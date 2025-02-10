@@ -37,6 +37,9 @@ function setDifficulty(level) {
     hardButton.disabled = true;
     startButton.style.display = 'inline-block';
     alert(`Nivel seleccionado: ${level}`);
+
+    // Reiniciar el juego con la nueva dificultad
+    resetGame();
 }
 
 // Iniciar el juego
@@ -136,6 +139,7 @@ function startTimer(time) {
 // Reiniciar el juego
 function resetGame() {
     startButton.style.display = 'inline-block';
+    puzzleContainer.innerHTML = '';
     timer = 60;
     temporizadorElement.innerHTML = `Tiempo restante: <span>${timer}</span> s`;
     startButton.addEventListener('click', startGame);
