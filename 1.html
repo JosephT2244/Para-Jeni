@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina la Palabra de Amor</title>
+    <style>
+/* Importar fuentes elegantes */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Open+Sans:wght@300;400&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fff; /* Fondo blanco suave */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden; /* Evita el deslizamiento horizontal */
+}
+
+/* Menú superior + Lateral unido */
+.layout {
+    display: flex;
+    flex: 1;
+    background: linear-gradient(135deg, #f8c8d7, #ffecdb); /* Rosa suave y blanco cálido */
+}
+
+.sidebar {
+    width: 240px;  /* Menú lateral ajustado */
+    background: #ffecdb; /* Blanco cálido */
+    padding: 20px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    border-radius: 0;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.sidebar:hover {
+    box-shadow: 6px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 18px 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #6f4f4f; /* Gris suave */
+    font-size: 22px;
+    display: block;
+    padding: 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.4s ease;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+    color: #f5a3a5; /* Rosa suave */
+    transition: 0.4s;
+}
+
+/* Encabezado más pequeño, elegante y romántico */
+header {
+    background: #ffb7a8; /* Rosa suave */
+    color: white;
+    text-align: center;
+    padding: 12px 30px;  /* Encabezado ajustado */
+    font-size: 26px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+header:hover {
+    background: #f8c8d7; /* Rosa aún más suave */
+    transform: scale(1.02);
+}
+
+/* Footer romántico con toque dorado */
+footer {
+    background: #ffecdb; /* Blanco cálido */
+    color: #6f4f4f; /* Gris suave */
+    padding: 25px 30px;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-style: italic;
+    border-top: none;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: auto;
+    transition: all 0.3s ease;
+}
+
+footer:hover {
+    background: #f8c8d7; /* Rosa suave */
+    transform: scale(1.05);
+}
+
+footer::after {
+    content: "❤️";
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.6;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Contenido principal */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 750px;
+    margin: auto;
+    border: 3px solid #f5a3a5; /* Rosa suave */
+    transition: all 0.3s ease;
+}
+
+.content:hover {
+    transform: scale(1.01);
+}
+
+/* Texto de descripción */
+p {
+    font-size: 18px;
+    color: #6e6e6e;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+p:hover {
+    color: #f5a3a5; /* Rosa suave */
+}
+
+/* Área de texto */
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    border: 2px solid #f5a3a5; /* Rosa suave */
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    background-color: #fdf5e6; /* Fondo suave de rosa pálido */
+    color: #6e6e6e;
+    transition: background-color 0.3s ease;
+}
+
+textarea:focus {
+    background-color: #ffe2b3; /* Amarillo suave al enfocarse */
+}
+
+/* Botón animado */
+button {
+    background-color: #f5a3a5; /* Rosa suave */
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #f08a8a; /* Rosa más intenso */
+    transform: scale(1.1);
+}
+
+/* Caja de resultados */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffebeb; /* Fondo cálido con toque romántico */
+    border: 2px solid #f5a3a5; /* Rosa suave */
+    border-radius: 8px;
+    font-size: 16px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #6e6e6e;
+    text-align: justify;
+    transition: background-color 0.3s ease;
+}
+
+.result:hover {
+    background-color: #fff0e6; /* Rosa pálido */
+}
+
+/* Efecto suave de transición en el footer */
+footer:hover {
+    background: #f8c8d7; /* Rosa suave */
+    transform: scale(1.02);
+    transition: 0.3s ease;
+}
+
+/* Contenedor de la palabra a adivinar */
+.word-container {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 10px;
+    margin: 20px 0;
+    color: #f5a3a5; /* Rosa suave */
+    font-family: 'Playfair Display', serif;
+}
+
+/* Contenedor de entrada de letra y botón */
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#letter-input {
+    font-size: 24px;
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+    border: 2px solid #f5a3a5; /* Rosa suave */
+    border-radius: 8px;
+    outline: none;
+    background-color: #fdf5e6; /* Fondo suave */
+    color: #6e6e6e;
+    font-family: 'Open Sans', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+#letter-input:focus {
+    background-color: #ffe2b3; /* Amarillo suave cuando está enfocado */
+}
+
+button {
+    background-color: #f5a3a5; /* Rosa suave */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #f08a8a; /* Rosa más intenso */
+    transform: scale(1.1);
+}
+
+/* Mensaje (si la letra es correcta o incorrecta) */
+.message {
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    color: #f5a3a5; /* Rosa suave */
+    font-weight: 600;
+}
+
+/* Puntuación (vidas restantes) */
+.score {
+    font-size: 18px;
+    margin-top: 10px;
+    font-family: 'Playfair Display', serif;
+    color: #6e6e6e;
+    font-weight: 500;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Menú superior -->
+    <header>
+        <h1>💌 Adivina la Palabra Romántica 💌</h1>
+    </header>
+
+    <div class="layout">
+        <!-- Menú lateral -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html">Te amo mucho</a></li>
+                <li><a href="2.html">Mini juego 2</a></li>
+                <li><a href="3.html">Mini juego 3</a></li>
+                <li><a href="4.html">Mini juego 4</a></li>
+                <li><a href="5.html">Mini juego 5</a></li>
+                <li><a href="6.html">Mini juego 6</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <p>¡Diviértete adivinando palabras románticas, tururun!</p>
+            <div class="word-container" id="word-display">_ _ _ _ _</div>
+            <div class="input-container">
+                <input type="text" id="letter-input" maxlength="1" autocomplete="off" />
+                <button onclick="guessLetter()">Adivinar</button>
+            </div>
+            <div class="message" id="message"></div>
+            <div class="score" id="score"></div>
+            <div class="difficulty" style="margin-top: 11px;">
+                <button onclick="setDifficulty('easy')">Fácil</button>
+                <button onclick="setDifficulty('medium')" style="margin-left: 6px; margin-right: 6px;">Medio</button>
+                <button onclick="setDifficulty('hard')">Difícil</button>
+            </div>            
+        </main>
+    </div>
+
+    <!-- Footer con dato curioso -->
+    <footer>📐 Si el amor fuera una fórmula, la mía sería: tú + yo = una ecuación perfecta. ¿Qué opinas de nuestro cálculo amoroso? ❤️</footer>
+
+
+    <script src="1.js"></script>
+</body>
+</html>

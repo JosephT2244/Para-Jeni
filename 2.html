@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Rellenar Corazón 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+/* Importar fuentes elegantes */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Open+Sans:wght@300;400&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fff; /* Fondo blanco suave */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden; /* Evita el deslizamiento horizontal */
+}
+
+/* Menú superior + Lateral unido */
+.layout {
+    display: flex;
+    flex: 1;
+    background: linear-gradient(135deg, #f8c8d7, #ffecdb); /* Rosa suave y blanco cálido */
+}
+
+.sidebar {
+    width: 240px;  /* Menú lateral ajustado */
+    background: #ffecdb; /* Blanco cálido */
+    padding: 20px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    border-radius: 0;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.sidebar:hover {
+    box-shadow: 6px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 18px 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #6f4f4f; /* Gris suave */
+    font-size: 22px;
+    display: block;
+    padding: 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.4s ease;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+    color: #f5a3a5; /* Rosa suave */
+    transition: 0.4s;
+}
+
+/* Encabezado más pequeño, elegante y romántico */
+header {
+    background: #ffb7a8; /* Rosa suave */
+    color: white;
+    text-align: center;
+    padding: 12px 30px;  /* Encabezado ajustado */
+    font-size: 26px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+header:hover {
+    background: #f8c8d7; /* Rosa aún más suave */
+    transform: scale(1.02);
+}
+
+/* Footer romántico con toque dorado */
+footer {
+    background: #ffecdb; /* Blanco cálido */
+    color: #6f4f4f; /* Gris suave */
+    padding: 25px 30px;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-style: italic;
+    border-top: none;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: auto;
+    transition: all 0.3s ease;
+}
+
+footer:hover {
+    background: #f8c8d7; /* Rosa suave */
+    transform: scale(1.05);
+}
+
+footer::after {
+    content: "❤️";
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.6;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Contenido principal */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 750px;
+    margin: auto;
+    border: 3px solid #f5a3a5; /* Rosa suave */
+    transition: all 0.3s ease;
+    overflow-y: auto; /* Permite que el contenido haga scroll */
+    max-height: calc(100vh - 120px); /* Ajusta la altura para no invadir el header ni el footer */
+}
+
+.content:hover {
+    transform: scale(1.01);
+}
+
+/* Estilo para el corazón */
+.heart-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: pulse 1s infinite alternate;
+}
+
+/* El corazón tiene una animación para pulsar */
+.heart-container:hover {
+    transform: scale(1.1);
+}
+
+.heart-inner {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #2c2c2c; /* Inicialmente negro */
+    transform: rotate(112deg); /* Aseguramos que el corazón esté bien orientado */
+    transition: background-color 0.5s ease;
+    animation: pulse 1s infinite alternate;
+    --color-heart: #2c2c2c; /* Variable para el color del corazón */
+}
+
+/* Pseudo-elementos para las bolitas del corazón */
+.heart-inner::before,
+.heart-inner::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-heart); /* Usamos la variable para el color */
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+}
+
+.heart-inner::before {
+    left: 50px;
+    top: 0;
+}
+
+.heart-inner::after {
+    left: 0;
+    top: 50px;
+}
+
+
+
+/* Animación de latido */
+@keyframes pulse {
+    0% {
+        transform: scale(1) rotate(112deg); /* Pulsación inicial */
+    }
+    50% {
+        transform: scale(1.1) rotate(112deg); /* Ampliación con pulso */
+    }
+    100% {
+        transform: scale(1) rotate(112deg); /* Retorno al tamaño original */
+    }
+}
+
+/* Nuevo estilo para que el corazón se llene de abajo hacia arriba */
+.heart-inner.filled {
+    animation: fillHeart 2s forwards;
+}
+
+@keyframes fillHeart {
+    0% {
+        transform: rotate(112deg) scale(1);
+    }
+    100% {
+        transform: rotate(112deg) scale(1.5);
+        background-color: #ff3b3b;
+    }
+}
+
+/* Estilos para el área de texto */
+textarea {
+    width: 95%;
+    height: 150px;
+    padding: 12px;
+    border: 2px solid #f5a3a5;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    background-color: #fdf5e6;
+    color: #6e6e6e;
+    transition: background-color 0.3s ease;
+}
+
+textarea:focus {
+    background-color: #ffe2b3;
+}
+
+/* Botón animado */
+button {
+    background-color: #f5a3a5;
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #f08a8a;
+    transform: scale(1.1);
+}
+
+/* Resultado */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffebeb;
+    border: 2px solid #f5a3a5;
+    border-radius: 8px;
+    font-size: 16px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #6e6e6e;
+    text-align: justify;
+    transition: background-color 0.3s ease;
+}
+
+.result:hover {
+    background-color: #fff0e6;
+}
+
+    </style>
+</head>
+<body>
+<!-- Encabezado -->
+    <header>
+        <h1>💖 Rellenar Corazón con Amor 💖</h1>
+    </header>
+
+    <div class="layout">
+        <!-- Menú lateral -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html">Eres perfecta, bb</a></li>
+                <li><a href="1.html">Mini juego 1</a></li>
+                <li><a href="3.html">Mini juego 3</a></li>
+                <li><a href="4.html">Mini juego 4</a></li>
+                <li><a href="5.html">Mini juego 5</a></li>
+                <li><a href="6.html">Mini juego 6</a></li>
+            </ul>
+        </nav>
+        <!-- Contenido principal -->
+        <main class="content">
+            <p>¡Escribe algo que te guste de nosotros de la otra persona y verás cómo se llena el corazón de amor! 💖</p>
+            <textarea id="inputTexto" placeholder="Escribe algo bonito aquí..." oninput="checkInput()"></textarea>
+            <button onclick="addLove()">💖 Agregar Amor 💖</button>
+<br><br><br><br><br>
+            <div class="heart-container" id="heart" onclick="fillHeart()">
+                <div class="heart-inner" id="heart-inner"></div>
+            </div>
+<br><br>
+            <div id="messageBox" class="result"></div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>💡 Si el amor fuera una corriente eléctrica, tú serías la fuente que da energía infinita a mi vida. ¡Tú eres mi resistor ideal! ⚡</footer>
+
+    
+
+    <script src="2.js"></script>
+</body>
+</html>

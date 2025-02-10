@@ -1,0 +1,116 @@
+/* Estilos Generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff3f8; /* Fondo suave rosa claro */
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+/* Menú Lateral */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #ff6f61;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    margin: 20px 0;
+}
+
+#sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+#sidebar ul li a:hover {
+    color: #ff9a2e;
+}
+
+/* Encabezado */
+header {
+    background-color: #ff6f61;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    margin-left: 250px;
+    font-size: 36px;
+}
+
+/* Contenedor del Juego */
+.game-container {
+    text-align: center;
+    background-color: #f8c8d7;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    margin-left: 300px; /* Para que se ajuste al menú lateral */
+}
+
+/* Estilo de la palabra */
+.word-container {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+    letter-spacing: 3px;
+    color: #ff9a2e; /* Naranja suave */
+}
+
+/* Estilo del campo de entrada y botón */
+.input-container input {
+    font-size: 18px;
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+    margin: 5px;
+    border: 2px solid #ff9a2e;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input-container button {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #ff9a2e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+    background-color: #f08a3c;
+}
+
+/* Estilo de mensajes */
+.message {
+    font-size: 20px;
+    color: #f5a3a5; /* Rosa suave */
+    margin-top: 20px;
+}
+
+/* Estilo de puntos */
+.score {
+    font-size: 22px;
+    color: #6f4f4f; /* Gris suave */
+    margin-top: 20px;
+}

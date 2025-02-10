@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorama de Pareja</title>
+    <style>
+        /* Importar fuentes elegantes */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Open+Sans:wght@300;400&display=swap');
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Menú superior + Lateral unido */
+        .layout {
+            display: flex;
+            flex: 1;
+            background: linear-gradient(135deg, #f8c8d7, #ffecdb);
+        }
+
+        .sidebar {
+            width: 240px;
+            background: #ffecdb;
+            padding: 20px;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            border-radius: 0;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar:hover {
+            box-shadow: 6px 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 18px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #6f4f4f;
+            font-size: 22px;
+            display: block;
+            padding: 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.4s ease;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
+            color: #f5a3a5;
+            transition: 0.4s;
+        }
+
+        /* Encabezado */
+        header {
+            background: #ffb7a8;
+            color: white;
+            text-align: center;
+            padding: 1rem 2rem;
+            font-size: 26px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            background: #f8c8d7;
+            transform: scale(1.02);
+        }
+
+        /* Contenido principal */
+        .content {
+            flex-grow: 1;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 750px;
+            margin: 2rem auto;
+            border: 3px solid #f5a3a5;
+            transition: all 0.3s ease;
+        }
+
+        .content:hover {
+            transform: scale(1.01);
+        }
+
+        /* Área de juego */
+        .game-container {
+            margin-top: 2rem;
+        }
+
+        .puzzle {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .puzzle div {
+            width: 90%;
+            max-width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5a3a5;
+            color: white;
+            font-size: 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .puzzle div:hover {
+            transform: scale(1.1);
+        }
+
+        .puzzle div.selected {
+            background-color: #f8c8d7;
+            color: #6f4f4f;
+        }
+
+        .puzzle div.matched {
+            background-color: #d4f3d4;
+            color: #6f4f4f;
+            cursor: default;
+        }
+
+        /* Footer */
+        footer {
+            background: #ffecdb;
+            color: #6f4f4f;
+            padding: 1.5rem 2rem;
+            font-size: 18px;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-style: italic;
+            border-top: none;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        footer:hover {
+            background: #f8c8d7;
+            transform: scale(1.05);
+        }
+
+        footer::after {
+            content: "❤️";
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.6;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Turnos y temporizador */
+        .info-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .info {
+            font-size: 20px;
+            font-weight: bold;
+            color: #6f4f4f;
+        }
+
+        .info span {
+            font-size: 22px;
+            color: #f5a3a5;
+        }
+
+        /* Botón de empezar */
+        .start-button {
+            background-color: #f5a3a5;
+            color: white;
+            padding: 12px 20px;
+            font-size: 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: #ffb7a8;
+            transform: scale(1.05);
+        }
+
+        /* Botones de dificultad */
+        .difficulty-buttons {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .difficulty-buttons button {
+            background-color: #f5a3a5;
+            color: white;
+            padding: 10px 18px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .difficulty-buttons button:hover {
+            background-color: #ffb7a8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Menú superior -->
+    <header>
+        <h1>Memorama de Pareja</h1>
+    </header>
+
+    <div class="layout">
+        <!-- Menú lateral -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html">Te extraño, Bonita</a></li>
+                <li><a href="1.html">Mini juego 1</a></li>
+                <li><a href="2.html">Mini juego 2</a></li>
+                <li><a href="4.html">Mini juego 4</a></li>
+                <li><a href="5.html">Mini juego 5</a></li>
+                <li><a href="6.html">Mini juego 6</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <div class="info-container">
+                <div class="info" id="turno">
+                    Turno: <span>Jenifer</span>
+                </div>
+                <div class="info" id="temporizador">
+                    Tiempo restante: <span>150</span> s
+                </div>
+                <div class="info" id="aciertos-jenifer">
+                    Aciertos Jenifer: <span>0</span>
+                </div>
+                <div class="info" id="aciertos-joseph">
+                    Aciertos Joseph: <span>0</span>
+                </div>
+            </div>
+
+            <!-- Botones de dificultad -->
+            <div class="difficulty-buttons">
+                <button id="easy">Fácil</button>
+                <button id="medium">Medio</button>
+                <button id="hard">Difícil</button>
+            </div>
+
+            <div class="game-container">
+                <p>¡Haz clic en las piezas del rompecabezas para emparejarlas!</p>
+                <button class="start-button" id="start-button">Empezar</button>
+                <div class="puzzle" id="puzzle-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>💘 Si el amor es un campo magnético, no necesito una brújula, porque mi norte siempre serás tú… y no puedo evitar acercarme. 😏</footer>
+    <script src="3.js"></script>
+</body>
+</html>

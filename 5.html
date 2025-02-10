@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 Concurso de Preguntas de Amor 💌</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fff; /* Fondo blanco suave */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-x: hidden; /* Evita el deslizamiento horizontal */
+        }
+
+        /* Menú superior + Lateral unido */
+        .layout {
+            display: flex;
+            flex: 1;
+            background: linear-gradient(135deg, #f8c8d7, #ffecdb); /* Rosa suave y blanco cálido */
+        }
+
+        .sidebar {
+            width: 240px;  /* Menú lateral ajustado */
+            background: #ffecdb; /* Blanco cálido */
+            padding: 20px;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            border-radius: 0;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar:hover {
+            box-shadow: 6px 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 18px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #6f4f4f; /* Gris suave */
+            font-size: 22px;
+            display: block;
+            padding: 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.4s ease;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
+            color: #f5a3a5; /* Rosa suave */
+            transition: 0.4s;
+        }
+
+        /* Encabezado */
+        header {
+            background: #ffb7a8; /* Rosa suave */
+            color: white;
+            text-align: center;
+            padding: 12px 30px;  /* Encabezado ajustado */
+            font-size: 26px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            background: #f8c8d7; /* Rosa aún más suave */
+            transform: scale(1.02);
+        }
+
+        /* Contenido */
+        .content {
+            flex-grow: 1;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 750px;
+            margin: auto;
+            border: 3px solid #f5a3a5;
+        }
+
+        .question-container {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .answer-btn {
+            background-color: #f5a3a5;
+            color: white;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+        }
+
+        .answer-btn:hover {
+            background-color: #f08a8a;
+            transform: scale(1.1);
+        }
+
+        /* Contador de turnos */
+        .counter {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f08a8a;
+            text-align: center;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            width: 200px;
+            margin-top: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffebeb;
+            border: 2px solid #f5a3a5;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #6e6e6e;
+            text-align: justify;
+        }
+
+        .players-info {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .score {
+            color: #f08a8a;
+        }
+
+        /* Footer */
+        footer {
+            background: #ffecdb;
+            color: #6f4f4f;
+            padding: 1.5rem 2rem;
+            font-size: 21px;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-style: italic;
+            border-top: none;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        footer:hover {
+            background: #f8c8d7;
+            transform: scale(1.05);
+        }
+
+        footer::after {
+            content: "❤️";
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.6;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menú superior -->
+    <header>
+        <h1>💌 Concurso de Preguntas de Amor 💌</h1>
+    </header>
+
+    <div class="layout">
+        <!-- Menú lateral -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html">Ola, Princesa</a></li>
+                <li><a href="1.html">Mini juego 1</a></li>
+                <li><a href="2.html">Mini juego 2</a></li>
+                <li><a href="3.html">Mini juego 3</a></li>
+                <li><a href="4.html">Mini juego 4</a></li>
+                <li><a href="6.html">Mini juego 6</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <div class="players-info">
+                <p>Turno: <span id="current-player">Jenifer</span></p>
+                <p>Puntuación: <span id="jenifer-score" class="score">0</span> - <span id="joseph-score" class="score">0</span> (Joseph)</p>
+            </div>
+            <div class="question-container" id="question-container">
+                <p>¿Quién canta la canción 'Perfect'?</p>
+            </div>
+            <div class="answer-btns" id="answer-buttons">
+                <button class="answer-btn" onclick="checkAnswer('Ed Sheeran')">Ed Sheeran</button>
+                <button class="answer-btn" onclick="checkAnswer('Adele')">Adele</button>
+                <button class="answer-btn" onclick="checkAnswer('Taylor Swift')">Taylor Swift</button>
+            </div>
+            <div class="counter" id="turn-counter">Turno de Jenifer</div>
+            <div class="result" id="result"></div>
+        </main>
+    </div>
+
+    <!-- Footer con dato curioso -->
+    <footer>⚡ Si el amor fuera una corriente, tú serías el voltaje que hace que mi corazón se sobrecargue... y me ponga a mil por hora. (Si, otra de electronica.)😈</footer>
+    <script src="5.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuentra el Corazón</title>
+    <style>
+/* Estilos generales */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Menú lateral con animaciones */
+.layout {
+    display: flex;
+    flex: 1;
+    background: linear-gradient(135deg, #f8c8d7, #ffecdb);
+}
+
+.sidebar {
+    width: 240px;
+    background: #ffecdb;
+    padding: 20px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    border-radius: 0;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.sidebar:hover {
+    box-shadow: 6px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin: 18px 0;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #6f4f4f;
+    font-size: 22px;
+    display: block;
+    padding: 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.4s ease;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+    color: #f5a3a5;
+    transition: 0.4s;
+}
+
+/* Header con animación */
+header {
+    background: #ffb7a8;
+    color: white;
+    text-align: center;
+    padding: 12px 30px;
+    font-size: 26px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+header:hover {
+    background: #f8c8d7;
+    transform: scale(1.02);
+}
+
+        /* Footer */
+        footer {
+            background: #ffecdb;
+            color: #6f4f4f;
+            padding: 1.5rem 2rem;
+            font-size: 21px;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-style: italic;
+            border-top: none;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        footer:hover {
+            background: #f8c8d7;
+            transform: scale(1.05);
+        }
+
+        footer::after {
+            content: "❤️";
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.6;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+/* Estilos del contenido principal */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 750px;
+    margin: auto;
+    border: 3px solid #f5a3a5;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+}
+
+.content:hover {
+    transform: scale(1.01);
+}
+
+/* Estilo para el área de emojis */
+.emoji-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.emoji {
+    font-size: 30px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.emoji:hover {
+    transform: scale(1.2);
+}
+
+button {
+    background-color: #f5a3a5;
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #f08a8a;
+    transform: scale(1.1);
+}
+
+.score {
+    font-size: 18px;
+    margin-top: 10px;
+    font-family: 'Playfair Display', serif;
+    color: #6e6e6e;
+}
+
+.timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff7b7b;
+    margin-top: 20px;
+}
+
+.difficulty-buttons {
+    margin-top: 30px;
+}
+
+.difficulty-buttons button {
+    margin: 10px;
+    padding: 15px 25px;
+    font-size: 18px;
+    background-color: #ffb7a8;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.difficulty-buttons button:hover {
+    background-color: #f08a8a;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>💘 Encuentra el Emoji 💘</h1>
+    </header>
+
+    <div class="layout">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html">Eres la mejor, Mi Vida.</a></li>
+                <li><a href="1.html">Mini juego 1</a></li>
+                <li><a href="2.html">Mini juego 2</a></li>
+                <li><a href="3.html">Mini juego 3</a></li>
+                <li><a href="4.html">Mini juego 4</a></li>
+                <li><a href="5.html">Mini juego 5</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div id="game">
+                <p id="instructions">¡Encuentra el emoji raro entre los emojis antes de que se acabe el tiempo!</p>
+                <div class="emoji-container" id="emoji-container">
+                    <!-- Emojis aparecerán aquí -->
+                </div>
+                <div class="score" id="score">Turno: Joseph | Tiempo: 20</div>
+                <div class="timer" id="timer">Tiempo restante: 20s</div>
+                <div class="difficulty-buttons">
+                    <button onclick="setDifficulty('easy')">Fácil</button>
+                    <button onclick="setDifficulty('medium')">Medio</button>
+                    <button onclick="setDifficulty('hard')">Difícil</button>
+                </div>
+                <button onclick="startTurn()">Iniciar Turno</button>
+            </div>
+        </main>
+    </div>
+
+    <footer>📚 El amor, al igual que un buen algoritmo, se va perfeccionando con el tiempo. Y tú, mi amor, eres mi código más bello. 💻</footer>
+    <script src="6.js"></script>
+</body>
+</html>

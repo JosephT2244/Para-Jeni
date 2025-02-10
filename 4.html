@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Frases de Amor</title>
+    <style>
+        /* Importar fuentes elegantes */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Open+Sans:wght@300;400&display=swap');
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Menú superior + Lateral unido */
+        .layout {
+            display: flex;
+            flex: 1;
+            background: linear-gradient(135deg, #f8c8d7, #ffecdb);
+        }
+
+        .sidebar {
+            width: 240px;
+            background: #ffecdb;
+            padding: 20px;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            border-radius: 0;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar:hover {
+            box-shadow: 6px 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 18px 0;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #6f4f4f;
+            font-size: 22px;
+            display: block;
+            padding: 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.4s ease;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
+            color: #f5a3a5;
+            transition: 0.4s;
+        }
+
+        /* Encabezado más pequeño, elegante y romántico */
+        header {
+            background: #ffb7a8;
+            color: white;
+            text-align: center;
+            padding: 12px 30px;
+            font-size: 26px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            background: #f8c8d7;
+            transform: scale(1.02);
+        }
+
+        /* Footer romántico con toque dorado */
+        footer {
+            background: #ffecdb;
+            color: #6f4f4f;
+            padding: 25px 30px;
+            font-size: 19px;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-style: italic;
+            border-top: none;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        footer:hover {
+            background: #f8c8d7;
+            transform: scale(1.05);
+        }
+
+        footer::after {
+            content: "❤️";
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.6;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Contenido principal */
+        .content {
+            flex-grow: 1;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 750px;
+            margin: auto;
+            border: 3px solid #f5a3a5;
+            transition: all 0.3s ease;
+        }
+
+        .content:hover {
+            transform: scale(1.01);
+        }
+
+        /* Botón animado */
+        button {
+            background-color: #f5a3a5;
+            color: white;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #f08a8a;
+            transform: scale(1.1);
+        }
+
+        /* Caja de resultados */
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffebeb;
+            border: 2px solid #f5a3a5;
+            border-radius: 8px;
+            font-size: 16px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #6e6e6e;
+            text-align: justify;
+            transition: background-color 0.3s ease;
+        }
+
+        .result:hover {
+            background-color: #fff0e6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menú superior -->
+    <header>
+        <h1>💌 Generador de Frases de Amor 💌</h1>
+    </header>
+
+    <div class="layout">
+        <!-- Menú lateral -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html">Que guapotaaaa y lindota</a></li>
+                <li><a href="1.html">Mini juego 1</a></li>
+                <li><a href="2.html">Mini juego 2</a></li>
+                <li><a href="3.html">Mini juego 3</a></li>
+                <li><a href="5.html">Mini juego 5</a></li>
+                <li><a href="6.html">Mini juego 6</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <p>¡Genera una frase romántica con un toque científico, Miaumor! 💖</p>
+            
+            <!-- Contenedor para la frase y la canción generadas -->
+            <div class="result" id="generated-phrase"></div>
+
+            <br>
+
+            <!-- Botón para generar frase y canción -->
+            <button onclick="generatePhraseAndSong()">Generar Frase y Canción</button>
+        </main>
+    </div>
+    <!-- Footer con dato curioso -->
+    <footer>🌌 Si fueras un agujero negro, me estaría cayendo hacia ti sin poder evitarlo… ¿y quién quiere evitarlo, verdad? 😜</footer>
+    <script src="4.js"></script>
+</body>
+</html>
