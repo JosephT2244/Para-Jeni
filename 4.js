@@ -67,7 +67,6 @@ const phrases = [
 
 // Lista de 100 canciones dedicables
 const songs = [
-   
     "🎶 'Darte un beso' - Prince Royce",
     "🎶 'Te amo' - Franco de Vita",
     "🎶 'Eres la mujer' - Ricardo Arjona",
@@ -75,7 +74,7 @@ const songs = [
     "🎶 'Sigo pensando en ti' - Luis Miguel",
     "🎶 'Desde que llegaste' - Juanes",
     "🎶 'Amar sin ser amado' - Luis Fonsi",
-    "🎶 'Por siempre' - Kany García"
+    "🎶 'Por siempre' - Kany García",
     "🎶 'Cuando Me Enamoro' – Juan Luis Guerra ft. Juanes",
     "🎶 'Quiero Perderme Contigo' - José José",
     "🎶 'Preso' - José José",
@@ -90,16 +89,16 @@ const songs = [
     "🎶 'Bésame (Ida y Vuelta Edición Especial) [Video Oficial]' - La Adictiva",
     "🎶 'Sólo Para Ti' - Camila",
     "🎶 'Perfect' - Ed Sheeran",
-    "🎶 'Thinking Out Loud' - Ed Sheeran"
-    "🎶 'Un Siglo Sin Ti' – Chayanne"
-    "🎶 'Just the Way You Are' - Bruno Mars"
-    "🎶 'All of Me' - John Legend"
-    "🎶 'Can't Help Falling in Love' - Elvis Presley"
-    "🎶 'My Universe' - Coldplay & BTS"
+    "🎶 'Thinking Out Loud' - Ed Sheeran",
+    "🎶 'Un Siglo Sin Ti' – Chayanne",
+    "🎶 'Just the Way You Are' - Bruno Mars",
+    "🎶 'All of Me' - John Legend",
+    "🎶 'Can't Help Falling in Love' - Elvis Presley",
+    "🎶 'My Universe' - Coldplay & BTS",
     "🎶 'Yellow' - Coldplay",
     "🎶 'Stand By Me' - Ben E. King",
     "🎶 'Eres Tú' - Matisse & Reik",
-    "🎶 'Eres' - Café Tacvba"
+    "🎶 'Eres' - Café Tacvba",
     "🎶 'Te Voy a Amar' - Axel",
     "🎶 'Photograph' - Ed Sheeran",
     "🎶 'Por el Resto de Mi Vida' - Andrés Cepeda",
@@ -109,7 +108,7 @@ const songs = [
     "🎶 'Angels' - Robbie Williams",
     "🎶 'Me Enamoré de Ti' - David Bisbal",
     "🎶 'Estar Contigo' (feat. La Oreja de Van Gogh) - Alex Ubago, La Oreja de Van Gogh",
-    "🎶 'Solamente Tú' - Pablo Alborán"
+    "🎶 'Solamente Tú' - Pablo Alborán",
     "🎶 'Te Amaré' - Miguel Bosé",
     "🎶 'Para Amarnos Más' - Manuel Mijares",
     "🎶 '100 Años' - Pedro Infante",
