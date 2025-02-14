@@ -68,7 +68,7 @@ const phrases = [
 // Lista de 100 canciones dedicables
 const songs = [
    
-    "🎶 'Darte un beso' - Juanes",
+    "🎶 'Darte un beso' - Prince Royce",
     "🎶 'Te amo' - Franco de Vita",
     "🎶 'Eres la mujer' - Ricardo Arjona",
     "🎶 'Quiero' - Alejandro Sanz",
